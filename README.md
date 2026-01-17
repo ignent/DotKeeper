@@ -48,7 +48,7 @@
 2. **启动 Web 界面** (默认端口 9012):
 
     ```bash
-    python3 src/main.py web
+    python pystow.py web
     ```
 
     运行后浏览器会自动打开 `http://localhost:9012`。
@@ -57,25 +57,25 @@
     * 扫描包状态:
 
         ```bash
-        python3 src/main.py scan
+        python pystow.py scan
         ```
 
-    * 部署包 (例如 `nvim`):
+    * 部署包 (例如 `zsh`):
 
         ```bash
-        python3 src/main.py deploy nvim
+        python pystow.py deploy zsh
         ```
 
-    * 撤销包 (例如 `nvim`):
+    * 撤销包 (例如 `zsh`):
 
         ```bash
-        python3 src/main.py restore nvim
+        python pystow.py restore zsh
         ```
 
     * 查看帮助:
 
         ```bash
-        python3 src/main.py --help
+        python pystow.py --help
         ```
 
 ## 配置说明
