@@ -167,13 +167,16 @@ class DotfilesHandler(http.server.SimpleHTTPRequestHandler):
             
         self.send_json({"status": "success", "logs": logs, "dry_run": dry_run})
 
+class ReusableTCPServer(socketserver.TCPServer):
+    allow_reuse_address = True
+
 def run_server(config: AppConfig, service: DotfilesService, port=9012, open_browser=True):
     """启动 Web 服务器。"""
     # 自定义处理器工厂
     def handler_factory(*args, **kwargs):
         return DotfilesHandler(*args, config=config, service=service, **kwargs)
 
-    with socketserver.TCPServer(("", port), handler_factory) as httpd:
+    with ReusableTCPServer(("", port), handler_factory) as httpd:
         url = f"http://localhost:{port}"
         print(f"Serving Web GUI at {url}")
         if open_browser:
